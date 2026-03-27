@@ -81,7 +81,7 @@ autoreconx/
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/autoreconx.git
+git clone https://github.com/Amoonbhatti/AutoReconX.git
 cd autoreconx
 ```
 
