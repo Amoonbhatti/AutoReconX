@@ -12,16 +12,16 @@ from modules.live_check import run_live_check
 from modules.ssl_check import check_ssl
 from modules.findings import analyze_findings
 from reports.html_report import generate_html_report
-from utils.banner import show_banner   # ✅ correct import
+from utils.banner import show_banner
 
 init(autoreset=True)
 
 
 def main():
-    show_banner()   # ✅ FIXED
+    show_banner()
 
     parser = argparse.ArgumentParser(description="AutoReconX - Automated Recon Tool")
-    parser.add_argument("-t", "--target", required=True)
+    parser.add_argument("-t", "--target", help="Target domain or IP")   # ✅ FIXED
 
     # FLAGS
     parser.add_argument("--whois", action="store_true")
@@ -35,7 +35,15 @@ def main():
     parser.add_argument("--html", action="store_true")
 
     args = parser.parse_args()
-    target = args.target
+
+    # 🔥 USER INPUT SYSTEM
+    if not args.target:
+        target = input(Fore.YELLOW + "[?] Enter Target (domain/IP): ").strip()
+        if not target:
+            print(Fore.RED + "[-] Invalid target. Exiting...")
+            exit()
+    else:
+        target = args.target
 
     print(Fore.YELLOW + f"[+] Target: {target}")
 
