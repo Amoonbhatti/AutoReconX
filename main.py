@@ -12,23 +12,13 @@ from modules.live_check import run_live_check
 from modules.ssl_check import check_ssl
 from modules.findings import analyze_findings
 from reports.html_report import generate_html_report
+from utils.banner import show_banner   # ✅ correct import
 
 init(autoreset=True)
 
 
-def banner():
-    print(Fore.MAGENTA + """
-========================================
-        AutoReconX - Recon Tool
-========================================
-Developed by: Amoon Bhatti
-YouTube: Technical Haroon
-========================================
-""")
-
-
 def main():
-    banner()
+    show_banner()   # ✅ FIXED
 
     parser = argparse.ArgumentParser(description="AutoReconX - Automated Recon Tool")
     parser.add_argument("-t", "--target", required=True)
