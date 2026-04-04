@@ -59,10 +59,10 @@ def main():
 
     if args.dirb:
         if not os.path.exists(wordlist):
-            print(Fore.RED + "[-] Wordlist file not found!")
-            return
-        else:
-            print(Fore.GREEN + f"[+] Using wordlist: {wordlist}")
+            print(Fore.YELLOW + "[!] Custom wordlist not found, using Kali default...")
+            wordlist = "/usr/share/wordlists/dirb/common.txt"
+
+        print(Fore.GREEN + f"[+] Using wordlist: {wordlist}")
 
     results = {}
     target_dir = f"results/{target}"
@@ -95,13 +95,17 @@ def main():
 
     # PORT SCAN
     if args.scan:
-        print(Fore.CYAN + "[+] Nmap Scan...")
+        print(Fore.CYAN + "[+] Nmap Scan (this may take time)...")
         results["nmap"] = run_nmap(target)
 
-    # DIR BRUTEFORCE
+    # DIR BRUTEFORCE (SAFE CALL)
     if args.dirb:
         print(Fore.CYAN + "[+] Directory Bruteforce...")
-        results["dir_bruteforce"] = run_dir_bruteforce(target, wordlist)
+        try:
+            results["dir_bruteforce"] = run_dir_bruteforce(target, wordlist)
+        except TypeError:
+            # fallback for old function
+            results["dir_bruteforce"] = run_dir_bruteforce(target)
 
     # FINDINGS
     if args.findings:
