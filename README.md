@@ -95,6 +95,49 @@ Make sure **Nmap is installed** on your system.
 
 ---
 
+## 📱 Termux Installation (Android)
+
+AutoReconX can also run on Android using Termux:
+
+### 🔹 Step 1: Update Termux
+
+```bash
+pkg update && pkg upgrade -y
+```
+
+### 🔹 Step 2: Install Required Packages
+
+```bash
+pkg install python git nmap whois golang -y
+```
+
+### 🔹 Step 3: Clone Repository
+
+```bash
+git clone https://github.com/Amoonbhatti/AutoReconX.git
+cd AutoReconX
+```
+
+### 🔹 Step 4: Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+👉 If requirements.txt is not configured:
+
+```bash
+pip install colorama dnspython requests
+```
+
+### 🔹 Step 5: Run Tool
+
+```bash
+python main.py
+```
+
+---
+
 ## ▶️ Usage
 
 ### 🔹 Basic Scan
@@ -194,4 +237,5 @@ If you found this project useful:
 
 ---
 
-**AutoReconX — Turning Recon into Intelligence**
+**AutoReconX — Turning Recon into Intelligence** 🚀
+
