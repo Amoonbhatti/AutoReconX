@@ -21,11 +21,7 @@ def main():
     show_banner()
 
     parser = argparse.ArgumentParser(description="AutoReconX - Automated Recon Tool")
-<<<<<<< HEAD
     parser.add_argument("-t", "--target", help="Target domain or IP")
-=======
-    parser.add_argument("-t", "--target", help="Target domain or IP")   # ✅ FIXED
->>>>>>> eeb9bfadeb99a2f7e1ef8f2719336e299578917e
 
     # FLAGS
     parser.add_argument("--whois", action="store_true")
@@ -40,11 +36,7 @@ def main():
 
     args = parser.parse_args()
 
-<<<<<<< HEAD
-    # 🔥 USER INPUT
-=======
-    # 🔥 USER INPUT SYSTEM
->>>>>>> eeb9bfadeb99a2f7e1ef8f2719336e299578917e
+    # USER INPUT
     if not args.target:
         target = input(Fore.YELLOW + "[?] Enter Target (domain/IP): ").strip()
         if not target:
@@ -55,18 +47,13 @@ def main():
 
     print(Fore.YELLOW + f"[+] Target: {target}")
 
-<<<<<<< HEAD
-    # 🔥 FULL SCAN MODE
-=======
     # FULL SCAN
->>>>>>> eeb9bfadeb99a2f7e1ef8f2719336e299578917e
     if not any(vars(args).values()):
         print(Fore.CYAN + "[+] Running FULL recon")
         args.whois = args.subdomains = args.dns = args.scan = True
         args.dirb = args.live = args.ssl = args.findings = args.html = True
 
-<<<<<<< HEAD
-    # 🔥 WORDLIST PATH SETUP (PRO WAY)
+    # WORDLIST SETUP
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     wordlist = os.path.join(BASE_DIR, "wordlists", "common.txt")
 
@@ -77,8 +64,6 @@ def main():
         else:
             print(Fore.GREEN + f"[+] Using wordlist: {wordlist}")
 
-=======
->>>>>>> eeb9bfadeb99a2f7e1ef8f2719336e299578917e
     results = {}
     target_dir = f"results/{target}"
     os.makedirs(target_dir, exist_ok=True)
@@ -113,17 +98,10 @@ def main():
         print(Fore.CYAN + "[+] Nmap Scan...")
         results["nmap"] = run_nmap(target)
 
-<<<<<<< HEAD
-    # DIR BRUTEFORCE (WITH WORDLIST)
+    # DIR BRUTEFORCE
     if args.dirb:
         print(Fore.CYAN + "[+] Directory Bruteforce...")
         results["dir_bruteforce"] = run_dir_bruteforce(target, wordlist)
-=======
-    # DIR BRUTE
-    if args.dirb:
-        print(Fore.CYAN + "[+] Directory Bruteforce...")
-        results["dir_bruteforce"] = run_dir_bruteforce(target)
->>>>>>> eeb9bfadeb99a2f7e1ef8f2719336e299578917e
 
     # FINDINGS
     if args.findings:
